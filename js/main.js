@@ -2,7 +2,7 @@
 document.querySelector('button').addEventListener('click', getFetch)
 
 function getFetch(){
-  const choice = document.querySelector('input').value
+  const choice = document.querySelector('input').value.replaceAll(' ', '-').replaceAll('.', '').toLowerCase()
   const url = `https://pokeapi.co/api/v2/pokemon/${choice}`
 
   fetch(url)
@@ -60,7 +60,7 @@ class Poke {
 
   isItHousePet(){
     //check height, weight, and types
-    let badTypes = ['fire', 'electric', 'fighting', 'poison', 'ghost']
+    let badTypes = ['fire', 'electric', 'fighting', 'poison', 'ghost', 'psychic']
     if(this.weightToPounds(this.weight) > 400){
       this.reason.push(`It is too heavy at ${this.weightToPounds(this.weight)} lbs`)
       this.housePet = false
@@ -76,3 +76,7 @@ class Poke {
   }
 
 }//end of Poke class
+
+class PokeInfo extends Poke {
+  constructor(name, height, weight, types, image, location)
+}
