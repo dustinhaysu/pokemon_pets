@@ -9,9 +9,12 @@ function getFetch(){
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         console.log(data)
-        const potentialPet = new Poke (data.name, data.height, data.weight, data.types, data.sprites.other['official-artwork'].front_default)
+        const potentialPet = new PokeInfo (data.name, data.height, data.weight, data.types, data.sprites.other['official-artwork'].front_default, data.location_area_encounters)
+
         potentialPet.getTypes();
         potentialPet.isItHousePet();
+        potentialPet.encounterInfo();
+
         let decision = '';
         if(potentialPet.housePet === true){
           decision = `This Pokemon is small enough, light enough, and safe enough to be a good pet!`
@@ -77,6 +80,36 @@ class Poke {
 
 }//end of Poke class
 
+//all info from Poke is passed into PokeInfo and can now call PokeInfo inside the fetch() near line 10
 class PokeInfo extends Poke {
-  constructor(name, height, weight, types, image, location)
+  constructor(name, height, weight, types, image, location){
+  super(name, height, weight, types, image)//build Poke then send me the information
+  this.locationURL = location
+  this.locationList = []
+  this.locationString = ''
+  }
+
+  encounterInfo(){
+    fetch(this.locationURL)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        for(const item of data){
+          this.locationList.push(item.location_area.name)
+        }
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+      });
+
+  }
+
+  locationCleanup(){
+    const words = this.locationList.slice(0,5).join('-').split('-')
+    for(let i = 0; i<words.length; i++){
+      words[i] = words[i][0].toUpperCase() + words[i].slice(1)
+
+    }
+    return words.join(' ')
+  }
 }
