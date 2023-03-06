@@ -20,11 +20,12 @@ function getFetch(){
         if(potentialPet.housePet === true){
           potentialPet.encounterInfo()
       
-          decision = `This Pokemon is small enough, light enough, and safe enough to be a good pet! ${potentialPet.pokemonLocation} `
+          decision = `This Pokemon is small enough, light enough, and safe enough to be a good pet!`
           
         } else {
           decision = `This Pokemon would not be a good pet because ${potentialPet.reason.join(' and ')}`
           document.getElementById('location').innerText = ''
+          document.getElementById('pokemon-location').innerText = ''
         }
         document.querySelector('h2').innerText = decision;
         document.querySelector('img').src = potentialPet.image
@@ -107,25 +108,11 @@ class PokeInfo extends Poke {
         let target = document.getElementById('location')
         if(data.length===0){
           console.log('+ 0')
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
          /*!!!!*/ document.getElementById('pokemon-location').innerText = `It looks like ${this.name} is laying low right now. Please check again later.`
           target.innerText = ''
         } else {
           console.log('else')
-          this.pokemonLocation = `You can find ${potentialPet.name} in the following location(s):`
+          document.getElementById('pokemon-location').innerText = `You can find ${this.name} in the following location(s):`
         target.innerText = this.locationCleanup()
         }
       })
@@ -139,10 +126,12 @@ class PokeInfo extends Poke {
     const words = this.locationList.slice(0,5).join(', ').replaceAll('-', ' ').split(' ')
     console.log(words)
 
+    words.unshift('-')
+
     for(let i = 0; i<words.length; i++){
       words[i] = words[i][0].toUpperCase() + words[i].slice(1)
 
     }
-    return words.join(' ')
+    return words.join(' ').replaceAll(',','\n-')
   }
 }
