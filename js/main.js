@@ -27,7 +27,9 @@ function getFetch(){
           document.getElementById('location').innerText = ''
           document.getElementById('pokemon-location').innerText = ''
         }
-        document.querySelector('h2').innerText = decision;
+        document.getElementById('types').innerText = '';
+        document.getElementById('types').innerText = `Pokemon type(s) include ${potentialPet.typeList.join(' and ')}.`
+        document.getElementById('decision').innerText = decision;
         document.querySelector('img').src = potentialPet.image
         console.log(potentialPet.reason)
         console.log(potentialPet.housePet)
