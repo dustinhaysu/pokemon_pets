@@ -107,8 +107,7 @@ class PokeInfo extends Poke {
         console.log(data.length)
         let target = document.getElementById('location')
         if(data.length===0){
-          console.log('+ 0')
-         /*!!!!*/ document.getElementById('pokemon-location').innerText = `It looks like ${this.name} is laying low right now. Please check again later.`
+         document.getElementById('pokemon-location').innerText = `It looks like ${this.name} is laying low right now. Please check again later.`
           target.innerText = ''
         } else {
           console.log('else')
