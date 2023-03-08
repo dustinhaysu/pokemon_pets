@@ -33,15 +33,18 @@ function getFetch(){
           document.getElementById('location').innerText = ''
           document.getElementById('pokemon-location').innerText = ''
         }
+        document.querySelector('h1').innerText = `${potentialPet.name}!`
         potentialPet.powerTypes();
         document.getElementById('decision').innerText = decision;
         document.querySelector('img').src = potentialPet.image
+        document.getElementById('stock-pic').innerHTML = ''
         //console.log(potentialPet.reason)
         //console.log(potentialPet.housePet)
 
         //pull from json object
       })
       .catch(err => {
+        
         document.getElementById('red').innerText = `Hmmm, something isn\'t right. Please check your spelling and try again.`
           console.log(`error ${err}`)
       });
@@ -94,7 +97,7 @@ class Poke {
 
   powerTypes () {
     document.getElementById('types').innerText = '';
-      document.getElementById('types').innerText = `Pokemon power type(s) include ${this.typeList.join(' and ')}.`
+      document.getElementById('types').innerText = `${this.name} power type(s) include: ${this.typeList.join(' and ')}.`
   }
 
 }//end of Poke class
