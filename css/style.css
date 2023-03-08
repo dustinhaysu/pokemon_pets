@@ -49,5 +49,8 @@ img {
   html {
     font-size: 2rem;
   }
+  input {
+    width: 100%;
+  }
   
 }
