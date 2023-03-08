@@ -50,7 +50,8 @@ img {
     font-size: 2rem;
   }
   input {
-    width: 100%;
+    width: 80%;
+    margin: 10px auto;
   }
   
 }
