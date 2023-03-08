@@ -45,6 +45,10 @@ img {
   margin-top: 10px;
 }
 
+#red {
+  color: red;
+}
+
 @media screen and (max-width: 900px) {
   html {
     font-size: 2rem;

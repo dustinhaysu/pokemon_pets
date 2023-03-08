@@ -9,6 +9,11 @@ function getFetch(){
   fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
+        if(!data){
+          document.getElementById('red').innerText = `Hmmm, something isn\'t right. Please check your spelling and try again.`
+          return
+        }
+        document.getElementById('red').innerText = ''
         //console.log(data)
         const potentialPet = new PokeInfo (data.name, data.height, data.weight, data.types, data.sprites.other['official-artwork'].front_default, data.location_area_encounters)
 
