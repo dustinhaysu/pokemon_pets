@@ -37,14 +37,14 @@ function getFetch(){
         potentialPet.powerTypes();
         document.getElementById('decision').innerText = decision;
         document.querySelector('img').src = potentialPet.image
-        document.getElementById('stock-pic').innerHTML = ''
+        document.getElementById('stock-pic').src = ''
         //console.log(potentialPet.reason)
         //console.log(potentialPet.housePet)
 
         //pull from json object
       })
       .catch(err => {
-        
+
         document.getElementById('red').innerText = `Hmmm, something isn\'t right. Please check your spelling and try again.`
           console.log(`error ${err}`)
       });
