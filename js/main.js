@@ -9,7 +9,7 @@ function getFetch(){
   fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
-        console.log(data)
+        //console.log(data)
         const potentialPet = new PokeInfo (data.name, data.height, data.weight, data.types, data.sprites.other['official-artwork'].front_default, data.location_area_encounters)
 
         potentialPet.getTypes();
@@ -27,12 +27,11 @@ function getFetch(){
           document.getElementById('location').innerText = ''
           document.getElementById('pokemon-location').innerText = ''
         }
-        document.getElementById('types').innerText = '';
-        document.getElementById('types').innerText = `Pokemon type(s) include ${potentialPet.typeList.join(' and ')}.`
+        potentialPet.powerTypes();
         document.getElementById('decision').innerText = decision;
         document.querySelector('img').src = potentialPet.image
-        console.log(potentialPet.reason)
-        console.log(potentialPet.housePet)
+        //console.log(potentialPet.reason)
+        //console.log(potentialPet.housePet)
 
         //pull from json object
       })
@@ -57,7 +56,7 @@ class Poke {
     for(const property of this.types){
       this.typeList.push(property.type.name)
     }
-    console.log(this.typeList)
+    //console.log(this.typeList)
   }
 
   weightToPounds (weight) {
@@ -83,7 +82,12 @@ class Poke {
     if(badTypes.some(r=> this.typeList.indexOf(r)>=0)){
       this.reason.push(`It's type is too dangerous`)
       this.housePet = `false`
-    }
+    }    
+  }
+
+  powerTypes () {
+    document.getElementById('types').innerText = '';
+      document.getElementById('types').innerText = `Pokemon power type(s) include ${this.typeList.join(' and ')}.`
   }
 
 }//end of Poke class
@@ -102,17 +106,17 @@ class PokeInfo extends Poke {
     fetch(this.locationURL)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+       // console.log(data)
         for(const item of data){
           this.locationList.push(item.location_area.name)
         }
-        console.log(data.length)
+        //console.log(data.length)
         let target = document.getElementById('location')
         if(data.length===0){
          document.getElementById('pokemon-location').innerText = `It looks like ${this.name} is laying low right now. Please check again later.`
           target.innerText = ''
         } else {
-          console.log('else')
+          //console.log('else')
           document.getElementById('pokemon-location').innerText = `You can find ${this.name} in the following location(s):`
         target.innerText = this.locationCleanup()
         }
@@ -125,7 +129,7 @@ class PokeInfo extends Poke {
 
   locationCleanup(){
     const words = this.locationList.slice(0,5).join(', ').replaceAll('-', ' ').split(' ')
-    console.log(words)
+    //console.log(words)
 
     words.unshift('-')
 
