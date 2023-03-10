@@ -56,7 +56,7 @@ img {
 
 
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   html {
     font-size: 2rem;
   }
@@ -64,5 +64,5 @@ img {
     width: 80%;
     margin: 10px auto;
   }
-  
+   */
 }
