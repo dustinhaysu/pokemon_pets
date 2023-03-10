@@ -56,13 +56,13 @@ img {
 
 
 
-/* @media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   html {
-    font-size: 2rem;
+    font-size: 1rem;
   }
   input {
     width: 80%;
     margin: 10px auto;
   }
-   */
+  
 }
