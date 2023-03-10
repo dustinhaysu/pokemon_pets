@@ -1,4 +1,11 @@
 //Example fetch using pokemonapi.co
+
+/*to do list
+
+toggle img displays using js 
+bug shoot the DOM for relic stuff when/if something doesn't work*/
+
+
 document.querySelector('button').addEventListener('click', getFetch)
 document.querySelector('input').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
@@ -20,6 +27,7 @@ function getFetch(){
 
         potentialPet.getTypes();
         potentialPet.isItHousePet();
+        imageDisplay();
       
         
         let decision = '';
@@ -48,6 +56,13 @@ function getFetch(){
         document.getElementById('red').innerText = `Hmmm, something isn\'t right. Please check your spelling and try again.`
           console.log(`error ${err}`)
       });
+
+      function imageDisplay() {
+        let stockPic = document.getElementById("stock-pic");
+        let pokeImg = document.querySelector('img');
+          stockPic.style.display = "none";
+          pokeImg.style.display = "block";        
+      }
 }
 class Poke {
   constructor(name, height, weight, types, image){

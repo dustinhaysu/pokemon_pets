@@ -49,6 +49,12 @@ img {
   color: red;
 }
 
+#first-pic {
+  display: none;
+}
+
+
+
 @media screen and (max-width: 900px) {
   html {
     font-size: 2rem;
